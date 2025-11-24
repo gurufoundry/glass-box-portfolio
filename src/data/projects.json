@@ -1,0 +1,29 @@
+[
+  {
+    "id": "project-1",
+    "title": "Fintech Dashboard",
+    "role": "UI/UX & Frontend",
+    "description": "A React-based dashboard for tracking crypto assets. I focused on reducing cognitive load using whitespace and used D3.js for data visualization. The backend was Python.",
+    "tech": ["React", "D3.js", "Python", "Figma"],
+    "image": "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+    "techSpecs": {
+      "stack": ["React", "D3", "Python"],
+      "architecture": "Microservices",
+      "latency": "120ms"
+    }
+  },
+  {
+    "id": "project-2",
+    "title": "Computer Vision Drone",
+    "role": "AI Research",
+    "description": "Built a custom YOLOv8 model to detect cracks in pipelines. This required heavy PyTorch work and optimizing inference time for edge devices.",
+    "tech": ["PyTorch", "YOLO", "Computer Vision", "Python"],
+    "image": "https://images.unsplash.com/photo-1535378917042-10a22c95931a?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.0.3",
+    "techSpecs": {
+      "stack": ["PyTorch", "OpenCV", "Jetson Nano"],
+      "architecture": "Edge AI / Local Inference",
+      "model": "YOLOv8-Nano",
+      "latency": "30fps"
+    }
+  }
+]
