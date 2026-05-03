@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Glass Box | The AI & Design Portfolio",
     description: "Experience the bridge between User Experience and Artificial Intelligence.",
-    url: "https://glass-box-portfolio-h6tc.vercel.app/", // Make sure this matches your Vercel URL
+    url: "https://glass-box-portfolio.vercel.app", 
     siteName: "Glass Box Portfolio",
     images: [
       {
