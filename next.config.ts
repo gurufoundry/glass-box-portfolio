@@ -1,8 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // This tells Vercel NOT to compress the heavy C++ AI binaries
-  serverExternalPackages: ["onnxruntime-node", "@xenova/transformers"],
+  // This explicitly blocks the broken C++ engine so it falls back to pure JS
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "onnxruntime-node$": false,
+    };
+    return config;
+  },
 };
 
 export default nextConfig;
