@@ -1,19 +1,14 @@
-export const runtime = "edge";
-import { NextResponse } from "next/server";
 import { pipeline, env } from "@xenova/transformers";
+import { NextResponse } from "next/server"; // <-- THIS WAS MISSING
 
 // 1. Tell the AI to skip the local hard drive and use the cloud CDN
 env.allowLocalModels = false;
 
-// 2. Keep the Edge runtime
+// 2. Set the Edge runtime (Make sure this only appears ONCE in the file)
 export const runtime = "edge";
-
-// ... the rest of your existing POST function remains the same below ...
 
 // GLOBAL VARIABLE: 
 // We store the model outside the function so it stays in memory.
-// If we didn't do this, the server would have to reload the 20MB model 
-// every single time someone searches (which would be slow).
 let extractor: any = null;
 
 export async function POST(req: Request) {
