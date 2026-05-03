@@ -1,17 +1,20 @@
 import { pipeline, env } from "@xenova/transformers";
 import { NextResponse } from "next/server";
 
-// 1. Tell the AI to skip the local hard drive and use the cloud CDN
+// 1. Skip the local hard drive and use the cloud
 env.allowLocalModels = false;
 
-// 2. STOP the AI from trying to count server CPUs (which crashes on the Edge)
+// 2. Stop the AI from trying to count server CPUs
 env.backends.onnx.wasm.numThreads = 1;
 
-// 3. Set the Edge runtime
+// 3. Tell the Edge network EXACTLY where to download the WASM engine
+env.backends.onnx.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/";
+
+// 4. Set the Edge runtime
 export const runtime = "edge";
 
 // GLOBAL VARIABLE: 
-// We store the model outside the function so it stays in memory.
+// Store the model in memory so it doesn't reload on every search.
 let extractor: any = null;
 
 export async function POST(req: Request) {
@@ -25,10 +28,10 @@ export async function POST(req: Request) {
 
     if (!extractor) {
       console.log("⏳ Initializing AI model on server...");
-      extractor = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
+      extractor = await pipeline("feature-extraction", "Xenova/all-MiniLM-L6-v2");
     }
 
-    const output = await extractor(text, { pooling: 'mean', normalize: true });
+    const output = await extractor(text, { pooling: "mean", normalize: true });
     const vector = Array.from(output.data);
 
     return NextResponse.json({ vector });
